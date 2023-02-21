@@ -1,0 +1,58 @@
+﻿@model IEnumerable<comp2084_project.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>Movies</h1>
+
+<p>
+    <a class="btn btn-dark" asp-action="Create">Create New</a>
+</p>
+<table class="table table-hover"/>
+    <thead>
+        <tr>
+            <th>    
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>   
+                @if(item.Image != null)
+                {
+               <img 
+                   class="thumbnail"
+                   src="img/movies/@Html.DisplayFor(modelItem => item.Image)" alt="Movie Image" />
+               }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Director)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-dark" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" class="btn btn-dark" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" class="btn btn-dark" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

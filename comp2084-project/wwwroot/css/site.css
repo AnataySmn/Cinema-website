@@ -1,5 +1,8 @@
+/* Google font */
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -14,5 +17,16 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    font-family: 'Lilita One', cursive;
+}
+
+img.thumbnail
+{
+    width: 110px;
+    height: 140px;
+}
+
+.navbar-dark {
+    background-color: #000000;
 }
