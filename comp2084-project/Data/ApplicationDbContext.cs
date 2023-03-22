@@ -4,7 +4,7 @@ using comp2084_project.Models;
 
 namespace comp2084_project.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

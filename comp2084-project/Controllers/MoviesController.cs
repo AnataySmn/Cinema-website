@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using comp2084_project.Data;
 using comp2084_project.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace comp2084_project.Controllers
 {
+
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -25,7 +27,9 @@ namespace comp2084_project.Controllers
               return View(await _context.Movie.ToListAsync());
         }
 
+
         // GET: Movies/Details/5
+        [Authorize]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Movie == null)
@@ -70,6 +74,7 @@ namespace comp2084_project.Controllers
         }
 
         // GET: Movies/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Movie == null)

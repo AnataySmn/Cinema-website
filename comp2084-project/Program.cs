@@ -1,5 +1,7 @@
 using comp2084_project.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,8 +14,22 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+
+
+var configuration = builder.Configuration;
+
+builder.Services.AddAuthentication()
+    .AddGoogle(options =>
+   {
+       options.ClientId = configuration["Authentication:Google:ClientId"];
+       options.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+    });
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

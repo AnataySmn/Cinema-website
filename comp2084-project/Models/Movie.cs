@@ -18,6 +18,8 @@ namespace comp2084_project.Models
         public string? Description { get; set; }
 
         public string? Image { get; set; }
+
+        public List<CinemaRoom>? CinemaRooms { get; set; }
     }
 
  

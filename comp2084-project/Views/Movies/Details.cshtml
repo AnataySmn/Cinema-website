@@ -7,6 +7,14 @@
 <h1>Details</h1>
 
 
+@if (User.IsInRole("Administrator"))
+{
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+}
+
 <div>
     <h4>Movie</h4>
     <hr />
@@ -41,3 +49,6 @@
     <a asp-action="Edit" a class="text-dark" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index" a class="text-dark">Back to List</a>
 </div>
+
+
+

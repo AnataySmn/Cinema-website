@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using comp2084_project.Data;
 using comp2084_project.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace comp2084_project.Controllers
 {
+    [AllowAnonymous]
     public class CinemaRoomsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,7 +24,7 @@ namespace comp2084_project.Controllers
         // GET: CinemaRooms
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.CinemaRoom.Include(c => c.Movies);
+            var applicationDbContext = _context.CinemaRoom.Include(c => c.Movie);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -35,7 +37,7 @@ namespace comp2084_project.Controllers
             }
 
             var cinemaRoom = await _context.CinemaRoom
-                .Include(c => c.Movies)
+                .Include(c => c.Movie)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cinemaRoom == null)
             {
@@ -57,7 +59,7 @@ namespace comp2084_project.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CinemaRoomId,Name,Seats_no,CinemaRoomNumber,Id")] CinemaRoom cinemaRoom)
+        public async Task<IActionResult> Create([Bind("Name,Seats_no,CinemaRoomNumber,MovieId")] CinemaRoom cinemaRoom)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +93,7 @@ namespace comp2084_project.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CinemaRoomId,Name,Seats_no,CinemaRoomNumber,Id")] CinemaRoom cinemaRoom)
+        public async Task<IActionResult> Edit(int id, [Bind("Name,Seats_no,CinemaRoomNumber,MovieId")] CinemaRoom cinemaRoom)
         {
             if (id != cinemaRoom.Id)
             {
@@ -131,7 +133,7 @@ namespace comp2084_project.Controllers
             }
 
             var cinemaRoom = await _context.CinemaRoom
-                .Include(c => c.Movies)
+                .Include(c => c.Movie)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cinemaRoom == null)
             {

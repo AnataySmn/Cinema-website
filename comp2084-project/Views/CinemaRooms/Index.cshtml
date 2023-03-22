@@ -13,9 +13,6 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CinemaRoomId)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
@@ -25,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.CinemaRoomNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Movies)
+                @Html.DisplayNameFor(model => model.Movie)
             </th>
             <th></th>
         </tr>
@@ -33,9 +30,6 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CinemaRoomId)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -46,13 +40,16 @@
                 @Html.DisplayFor(modelItem => item.CinemaRoomNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Movies.Title)
+                @Html.DisplayFor(modelItem => item.Movie.Title)
             </td>
+                @if (User.Identity.IsAuthenticated)
+                {
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
+                }
         </tr>
 }
     </tbody>

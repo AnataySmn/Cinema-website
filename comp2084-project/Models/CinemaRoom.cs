@@ -5,18 +5,21 @@ namespace comp2084_project.Models
 {
     public class CinemaRoom
     {
-        public int CinemaRoomId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]
         public int Seats_no { get; set; }
+        [Required]
 
         public int CinemaRoomNumber { get; set; }
 
         [Display(Name = "Movie")]
-        public virtual int Id { get; set; }
-        [ForeignKey("Id")]
-        public virtual Movie Movies { get; set; }
+
+        [Required]
+        public int MovieId { get; set; }
+
+        public Movie? Movie { get; set; }
 
 
     }
