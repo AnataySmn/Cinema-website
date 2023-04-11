@@ -50,7 +50,9 @@ namespace comp2084_project.Controllers
         // GET: Movies/Create
         public IActionResult Create()
         {
-            return View();
+            ViewData["MovieId"] = new SelectList(_context.Movie, "Id", "Title");
+            ViewData["CinemaRoomId"] = new SelectList(_context.Movie, "Id", "Name");
+            return View("Create");
         }
 
         // POST: Movies/Create
@@ -60,9 +62,9 @@ namespace comp2084_project.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Director,Description,Image")] Movie movie, IFormFile? Image)
         {
-            if (ModelState.IsValid)
+           if (ModelState.IsValid )
             {
-                    if (Image != null)
+                  if (Image != null)
                     {
                         movie.Image = UploadImage(Image);
                     }

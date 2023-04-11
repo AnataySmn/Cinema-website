@@ -6,6 +6,7 @@ namespace comp2084_project.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+       
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
@@ -14,6 +15,7 @@ namespace comp2084_project.Data
        
         public DbSet<comp2084_project.Models.Movie> Movie { get; set; }
         public DbSet<comp2084_project.Models.CinemaRoom> CinemaRoom { get; set; }
+       
     }
     
 
